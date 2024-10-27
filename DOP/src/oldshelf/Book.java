@@ -2,7 +2,27 @@ package oldshelf;
 
 public abstract class Book {
 
-	public Book() {
-		// TODO: Finish Code here if anything to be done?
+	// Common property for all books
+	private String title;
+	public Book(){}	// Constructor to initialize title
+	public Book(String title) {
+		this.title = title;
+	}
+
+	// Getter for title
+	public String getTitle() {
+		return title;
+	}
+
+	// Setter for title
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	// Optional: Common toString method
+	@Override
+	public String toString() {
+		return "Book{title='" + title + "'}";
 	}
 }

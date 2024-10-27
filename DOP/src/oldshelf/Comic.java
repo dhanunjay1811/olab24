@@ -1,35 +1,60 @@
 package oldshelf;
-
 public class Comic extends Book {
 
-	/* TODO: Add most strict modifiers here*/ String Title;
+	// Applying the strictest modifier, `private`, to Title
+	private String title;
 
-	// TODO: Warning to be removed.
+	// Keeping `ageOfMainCharacter` private and final to prevent modification after initialization
 	private final int ageOfMainCharacter;
 
-	// TODO Correct the error
+	// Default constructor initializing with default values
 	public Comic() {
+		this.title = ""; // Default title if not provided
+		this.ageOfMainCharacter = 0; //Default age if not provided
 	}
-	
-	// TODO : create a getter if required.
-	
-	// TODO: Create a setter if required
 
-	// TODO: write a toString method
+	// Overloaded constructor to initialize title and ageOfMainCharacter
+	public Comic(String title, int ageOfMainCharacter) {
+		this.title = title;
+		this.ageOfMainCharacter = ageOfMainCharacter;
+	}
+
+	// Getter for title, added as required
+	public String getTitle() {
+		return title;
+	}
+
+	// Setter for title, added as required
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	// Optional getter for ageOfMainCharacter, can be omitted if unnecessary
+	public int getAgeOfMainCharacter() {
+		return ageOfMainCharacter;
+	}
+
+	// Override toString method to return a meaningful representation of Comic object
 	@Override
 	public String toString() {
-		return null;
+		return "Comic{title='" + title + "', ageOfMainCharacter=" + ageOfMainCharacter + "}";
 	}
 
-	// TODO: Bonus: 
+	// Override hashCode based on title and ageOfMainCharacter
 	@Override
 	public int hashCode() {
-		// TODO: Fill up an arbitrary hash method that takes into account only the age of main characted and the Strign title
+		int result = (title != null ? title.hashCode() : 0);
+		result = 31 * result + ageOfMainCharacter;
+		return result;
 	}
-	
-	// TODO: Bonus: 
+
+	// Override equals to match based on title and ageOfMainCharacter
 	@Override
 	public boolean equals(Object o) {
-		// TODO: Based on the information about hashCode write the equals method.
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Comic comic = (Comic) o;
+		return ageOfMainCharacter == comic.ageOfMainCharacter &&
+		       (title != null ? title.equals(comic.title) : comic.title == null);
 	}
 }
