@@ -18,21 +18,18 @@ public class NewSelection {
 	 * @return corresponding string based on the object's type
 	 */
 	public static String getAgeOrTitle(Object o) {
-		if (o instanceof Comic) {
-			return ((Comic) o).getTitle();
-		} else if (o instanceof Fiction) {
-			return ((Fiction) o).getName();
-		} else if (o instanceof TextBook) {
-			return ((TextBook) o).getSubject();
-		}
-		return "";
+		return switch (o){
+			case Comic comic -> comic.title();
+			case Fiction fiction -> fiction.name();
+			case TextBook textBook -> textBook.subject();
+			default -> "";
+		};
 	}
 
 	public static void main(String[] args) {
 		// Test cases
 		Comic comic = new Comic("Superhero Adventures", 25);
-		Fiction fiction = new Fiction("Mystery Novel", FictionType.Comedy);
-		fiction.setName("Whodunit Series");
+		Fiction fiction = new Fiction("Mystery Novel","Whodunit Series", FictionType.Comedy);
 		TextBook textBook = new TextBook("Calculus 101", "Mathematics");
 
 		System.out.println("Comic Title: " + getAgeOrTitle(comic));     
